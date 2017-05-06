@@ -19,10 +19,13 @@ class Pawn extends PieceState {
             if (board[x][y + yDir] == null) {
                 legalMoves.add(new Move(piece, x, y + yDir));
             }
-            if (x - 1 >= 0 && board[x - 1][y + yDir] != null) {
+            if (!piece.hasMoved() && y + 2 * yDir >= 0 && y + 2 * yDir < board[x].length && board[x][y + 2 * yDir] == null) {
+                legalMoves.add(new Move(piece, x, y + 2 * yDir));
+            }
+            if (x - 1 >= 0 && board[x - 1][y + yDir] != null && board[x - 1][y + yDir].getColor() != piece.getColor()) {
                 legalMoves.add(new Move(piece, x - 1, y + yDir));
             }
-            if (x + 1 < board.length && board[x + 1][y + yDir] != null) {
+            if (x + 1 < board.length && board[x + 1][y + yDir] != null && board[x + 1][y + yDir].getColor() != piece.getColor()) {
                 legalMoves.add(new Move(piece, x + 1, y + yDir));
             }
         }

@@ -25,6 +25,14 @@ public abstract class PieceState {
                 return knight;
             case PAWN:
                 return pawn;
+            case BISHOP:
+                return bishop;
+            case KING:
+                return king;
+            case ROOK:
+                return rook;
+            case QUEEN:
+                return queen;
             default:
                 return null;
         }

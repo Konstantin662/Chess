@@ -14,21 +14,19 @@ class Bishop extends PieceState {
         List<Move> legalMoves = new LinkedList<>();
         int x0 = piece.getX();
         int y0 = piece.getY();
-        for (int x = x0 + 1, y = y0 + 1; x < board.length && y < board[x].length; x++, y++) {
-            legalMoves.add(new Move(piece, x, y));
-            if (board[x][y] != null) break;
-        }
-        for (int x = x0 + 1, y = y0 - 1; x < board.length && y >= 0; x++, y--) {
-            legalMoves.add(new Move(piece, x, y));
-            if (board[x][y] != null) break;
-        }
-        for (int x = x0 - 1, y = y0 + 1; x >= 0 && y < board[x].length; x--, y++) {
-            legalMoves.add(new Move(piece, x, y));
-            if (board[x][y] != null) break;
-        }
-        for (int x = x0 - 1, y = y0 - 1; x >= 0 && y >= 0; x--, y--) {
-            legalMoves.add(new Move(piece, x, y));
-            if (board[x][y] != null) break;
+        for (int dx = +1; dx >= -1; dx -= 2) {
+            for (int dy = +1; dy >= -1; dy -= 2) {
+                for (int x = x0 + dx, y = y0 + dy; x >= 0 && y >= 0 && x < board.length && y < board[x].length; x += dx, y += dy) {
+                    if (board[x][y] == null) {
+                        legalMoves.add(new Move(piece, x, y));
+                    } else {
+                        if (board[x][y].getColor() != piece.getColor()) {
+                            legalMoves.add(new Move(piece, x, y));
+                        }
+                        break;
+                    }
+                }
+            }
         }
         return legalMoves;
     }

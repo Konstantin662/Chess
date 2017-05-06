@@ -14,13 +14,14 @@ class King extends PieceState {
         List<Move> legalMoves = new LinkedList<>();
         int x0 = piece.getX();
         int y0 = piece.getY();
-        int x,y;
-        for(int dx=-1;dx<=1;dx++){
-            for(int dy=-1;dy<=1;dy++){
-                x=x0+dx;
-                y=y0+dy;
-                if(x>=0&&y>=0&&x<board.length&&y<board[x].length&&(dy!=0||dx!=0)){
-                    legalMoves.add(new Move(piece,x,y));
+        int x, y;
+        for (int dx = -1; dx <= 1; dx++) {
+            for (int dy = -1; dy <= 1; dy++) {
+                x = x0 + dx;
+                y = y0 + dy;
+                if (x >= 0 && y >= 0 && x < board.length && y < board[x].length && (dy != 0 || dx != 0)
+                        && (board[x][y] == null || board[x][y].getColor() != piece.getColor())) {
+                    legalMoves.add(new Move(piece, x, y));
                 }
             }
         }

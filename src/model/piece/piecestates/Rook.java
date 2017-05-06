@@ -14,23 +14,28 @@ class Rook extends PieceState {
         List<Move> legalMoves = new LinkedList<>();
         int x0 = piece.getX();
         int y0 = piece.getY();
-        for (int x = x0 + 1; x < board.length; x++) {
-            legalMoves.add(new Move(piece, x, y0));
-            if (board[x][y0] != null) break;
+        for (int dir = +1; dir >= -1; dir -= 2) {
+            for (int x = x0 + dir; x >= 0 && x < board.length; x += dir) {
+                if (board[x][y0] == null) {
+                    legalMoves.add(new Move(piece, x, y0));
+                } else {
+                    if (board[x][y0].getColor() != piece.getColor()) {
+                        legalMoves.add(new Move(piece, x, y0));
+                    }
+                    break;
+                }
+            }
+            for (int y = y0 + dir; y >= 0 && y < board[x0].length; y += dir) {
+                if (board[x0][y] == null) {
+                    legalMoves.add(new Move(piece, x0, y));
+                } else {
+                    if (board[x0][y].getColor() != piece.getColor()) {
+                        legalMoves.add(new Move(piece, x0, y));
+                    }
+                    break;
+                }
+            }
         }
-        for (int x = x0 - 1; x >= 0; x--) {
-            legalMoves.add(new Move(piece, x, y0));
-            if (board[x][y0] != null) break;
-        }
-        for (int y = y0 + 1; y < board[x0].length; y++) {
-            legalMoves.add(new Move(piece, x0, y));
-            if (board[x0][y] != null) break;
-        }
-        for (int y = y0 - 1; y >= 0; y--) {
-            legalMoves.add(new Move(piece, x0, y));
-            if (board[x0][y] != null) break;
-        }
-
         return legalMoves;
     }
 
