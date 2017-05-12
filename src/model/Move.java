@@ -36,4 +36,8 @@ public class Move {
     public int hashCode() {
         return piece.hashCode() + newX + newY;
     }
+
+    public String toString() {
+        return piece.getPieceType().name() + "(" + piece.getX() + "," + piece.getY() + ") to " + newX + ", " + newY;
+    }
 }

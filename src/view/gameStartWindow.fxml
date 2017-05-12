@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.collections.FXCollections?>
+<Pane xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.GameStartWindowController"
+      prefHeight="300" prefWidth="200" fx:id="pane">
+    <VBox spacing="20" layoutX="50" layoutY="20" >
+        <VBox>
+            <Label>White player</Label>
+            <ComboBox fx:id="whitePlayerComboBox">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="User"/>
+                        <String fx:value="Computer"/>
+                    </FXCollections>
+                </items>
+                <value>
+                    <String fx:value="User"/>
+                </value>
+            </ComboBox>
+        </VBox>
+        <VBox>
+            <Label>Black player</Label>
+            <ComboBox fx:id="blackPlayerComboBox">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="User"/>
+                        <String fx:value="Computer"/>
+                    </FXCollections>
+                </items>
+                <value>
+                    <String fx:value="User"/>
+                </value>
+            </ComboBox>
+        </VBox>
+        <Button onAction="#onStartGameClick">Start game</Button>
+    </VBox>
+</Pane>

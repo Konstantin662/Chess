@@ -12,7 +12,7 @@ class Knight extends PieceState {
     public List<Move> getLegalMoves(GameState gameState, Piece piece) {
         List<Move> legalMoves = new LinkedList<>();
         Piece[][] board = gameState.getBoard();
-        int[] dXs = {-1, -2, -2, -2, 1, 2, 2, 1};
+        int[] dXs = {-1, -2, -2, -1, 1, 2, 2, 1};
         int[] dYs = {2, 1, -1, -2, -2, -1, 1, 2};
         int x, y;
         for (int i = 0; i < dXs.length; i++) {
